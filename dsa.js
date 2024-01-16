@@ -12,11 +12,18 @@ function twoNumSum(arr, target) {
     console.log("number elle");
 }
 // twoNumSum(arr = [1, 2, 6, 7, 4, 9], target = 10)
-//! complexity is O(n2)
+
+// complexity is O(n2)
 // here loop works through n timesa and ther is a  nested loop so thats why wwe use n*n
-//! space complexity is O(1)
+// space complexity is O(1)
 // here there is no need of new space thats why O(1)
-//todo lets look another approach 
+
+
+
+
+
+
+// lets look another approach 
 function twoNumSum(arr, target) {
     for (let i = 0; i < arr.length - 1; i++) {
         let check = arr[i]
@@ -42,6 +49,10 @@ function demo(arr, target) {
     }
 }
 let arr = [6, 6, 8, 6]
-demo(arr, 6)
-console.log(arr);
-// here we are converting all targget value to the end of this array
+// demo(arr, 6)
+// console.log(arr);
+// here we are converting all target value to the end of this array
+
+
+
+
