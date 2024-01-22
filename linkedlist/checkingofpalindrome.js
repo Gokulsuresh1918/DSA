@@ -1,15 +1,18 @@
-class node {
+
+
+//! Checking if this is palindrome
+class nodepal {
     constructor(data) {
         this.data = data
         this.next = null
     }
 }
-class linkedList {
+class linkedListpal {
     constructor() {
         this.head = null
     }
-    append(data) {
-        let newNode = new node(data)
+    appendpal(data) {
+        let newNode = new nodepal(data)
         if (!this.head) {
             this.head = newNode
             return
@@ -52,10 +55,11 @@ class linkedList {
         }
     }
 }
-const linkedLists = new linkedList()
-linkedLists.append(1)
-linkedLists.append(2)
-linkedLists.append(2)
-linkedLists.append(1)
-linkedLists.display()
-console.log(linkedLists.palindrome());
+const linkedListsoo = new linkedListpal()
+linkedListsoo.appendpal(1)
+linkedListsoo.appendpal(2)
+linkedListsoo.appendpal(2)
+linkedListsoo.appendpal(1)
+linkedListsoo.display()
+console.log(linkedListsoo.palindrome());
+
