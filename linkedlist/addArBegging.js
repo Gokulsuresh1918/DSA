@@ -30,8 +30,8 @@ class abc {
     }
 
 }
-// let va = new abc()
+let va = new abc()
 
-// va.prepend(9)
-// va.prepend(3)
-// va.display()
+va.prepend(9)
+va.prepend(3)
+va.display()
