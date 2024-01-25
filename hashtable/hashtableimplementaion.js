@@ -13,20 +13,41 @@ class hashtable {
     set(key, value) {
         const index = this.hash(key)
         // this.table[index] = value
-        const bucket = this.table[index]
+        let bucket = this.table[index]
         if (!bucket) {
-            bucket = [[key, value]]
-        }else{
-            
+
+            this.table[index] = [[key, value]]
+        } else {
+            const samekey = bucket.find(item => item[0] === key)
+            if (samekey) {
+                samekey[1] = value
+            } else {
+                bucket.push([key, value])
+            }
         }
     }
     get(key) {
         const index = this.hash(key)
-        return this.table[index]
+        // return this.table[index]
+        const bucket = this.table[index]
+        if (bucket) {
+            const samekey = bucket.find(item => item[0] === key)
+            if (samekey) {
+                return samekey[1]
+            }
+            return undefined
+        }
     }
     remove(key) {
         const index = this.hash(key)
-        this.table[index] = undefined
+        // this.table[index] = undefined
+        const bucket = this.table[index]
+        if (bucket) {
+            const samekey = bucket.find(item => item[0] === key)
+            if (samekey) {
+                bucket.splice(bucket.indexOf(samekey), 1)
+            }
+        }
     }
     display() {
         for (let i = 0; i < this.table.length; i++) {
@@ -41,5 +62,7 @@ table.set('name', 'gokul')
 table.set('age', '22')
 table.display()
 console.log(table.get('name'));
-table.remove('name')
+// table.set('mane','samad')
+table.set('mane','aswin')
+// table.remove('name')
 table.display()

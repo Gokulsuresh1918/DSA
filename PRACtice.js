@@ -1,61 +1,49 @@
 class node {
-    constructor(data) {
-        this.data = data
+    constructor(value) {
+        this.value = value
         this.next = null
     }
 }
-class linkedList {
+class linkedlist {
     constructor() {
         this.head = null
+        this.size = 0
     }
-    append(data) {
-        let newNode = new node(data)
-        if (!this.head) {
-            this.head = newNode
-            return
-        }
-        let current = this.head
-        while (current.next) {
-            current = current.next
-        }
-        current.next = newNode
+    isEmpty() {
+        return this.size === 0
     }
-    palindrome() {
-        let fast = this.head
-        let slow = this.head
-        let stack = []
-        while (fast && fast.next) {
-            stack.push(slow.data)
-            slow = slow.next
-            fast = fast.next.next
+    getSize() {
+        return this.size
+    }
+    prepend(element) {
+        const newnode = new node(element)
+        if (this.isEmpty()) {
+            this.head = newnode
+        } else {
+            newnode.next = this.head
+            this.head = newnode
         }
-        // If the linked list has an odd number of elements, move the slow pointer one step further
-        if (fast) {
-            slow = slow.next;
-        }
-        while (slow) {
-            let check = stack.pop()
-            if (check !== slow.data) {
-                return false
+        this.size++
+    }
+    print() {
+
+        if (this.isEmpty()) {
+            console.log('empty ');
+        } else {
+            let cur = this.head
+            let a = ''
+            while (cur) {
+                a+=`${cur.value}`
+                cur = cur.next
             }
-            slow = slow.next
+            console.log(a);
         }
 
-        return true
-
-    }
-    display() {
-        let current = this.head
-        while (current) {
-            console.log(current.data);
-            current = current.next
-        }
     }
 }
-const linkedLists = new linkedList()
-linkedLists.append(1)
-linkedLists.append(2)
-linkedLists.append(2)
-linkedLists.append(1)
-linkedLists.display()
-console.log(linkedLists.palindrome());
+const list=new linkedlist()
+console.log(list.isEmpty());    
+console.log(list.getSize());    
+list.prepend(4)
+console.log(list.isEmpty());    
+console.log(list.getSize());  
