@@ -8,15 +8,11 @@ class Node {
     }
 }
 // The Node class represents a node in the linked list, with data and a reference to the next node.
-
-
 class LinkedList {
     constructor() {
         this.head = null;
     }
-    // The LinkedList class has a head property, which is the reference to the first node.
-
-
+    // The LinkedList class has a head property, which is the reference to the first node
     // Add a new node to the end of the list
     InsertAtLast(data) {
         const newNode = new Node(data);
@@ -29,12 +25,9 @@ class LinkedList {
         while (current.next) {
             current = current.next;
         }
-
         current.next = newNode;
     }
-
     // The InsertAtLast method adds a new node to the end of the list.
-
     display() {
         let current = this.head;
         while (current) {
@@ -44,7 +37,6 @@ class LinkedList {
     }
     //The display method prints the elements of the linked list.
 }
-
 // const linkedList = new LinkedList();
 // linkedList.InsertAtLast(1);
 // linkedList.InsertAtLast(2);

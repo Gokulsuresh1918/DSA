@@ -5,7 +5,7 @@
 //  this order before pushing the new element 2.
 
 
-function increasingStack(arr) {
+function MonotonicStack(arr) {
     let str = []
     for (let i = 0; i < arr.length; i++) {
         while (str.length > 0 && str[str.length-1] > arr[i])      {

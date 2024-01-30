@@ -1,7 +1,7 @@
 
 
 
-function sort(array) {
+function Bubblesort(array) {
     let swap
     do {
          swap = false

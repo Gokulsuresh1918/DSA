@@ -61,6 +61,8 @@
             }
             return true
         }
+
+        
         //another way using bitwise operator
         function bitwise(n) {
             if (n < 1) {

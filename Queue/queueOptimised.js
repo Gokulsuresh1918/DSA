@@ -7,12 +7,12 @@ class Queue {
     constructor() {
         this.items = {};
         this.front = 0;
-        this.rear = 0;
+        this.back = 0;
     }
 
     enqueue(element) {
-        this.items[this.rear] = element;
-        this.rear++;
+        this.items[this.back] = element;
+        this.back++;
     }
 
     dequeue() {
@@ -23,7 +23,7 @@ class Queue {
     }
 
     isempty() {
-        return this.rear - this.front === 0;
+        return this.back - this.front === 0;
     }
 
     peek() {
@@ -31,7 +31,7 @@ class Queue {
     }
 
     size() {
-        return this.rear - this.front;
+        return this.back - this.front;
     }
 
     print() {

@@ -1,4 +1,4 @@
-function misselinious(arr, arr2) {
+function cartisitanProduct(arr, arr2) {
     let result = []
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr2.length; j++) {

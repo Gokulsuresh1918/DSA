@@ -32,10 +32,10 @@ class DoublyLinkedList {
         }
     }
 }
-// let linkedListt = new DoublyLinkedList()
-// linkedListt.Inssertingdata(1)
-// linkedListt.Inssertingdata(2)
-// linkedListt.Inssertingdata(3)
+let linkedListt = new DoublyLinkedList()
+linkedListt.Inssertingdata(1)
+linkedListt.Inssertingdata(2)
+linkedListt.Inssertingdata(3)
 
-// linkedListt.display()
+linkedListt.display()
 
