@@ -35,41 +35,21 @@ class treeeimplementation {
             }
         }
     }
-    search(root, value) {
-        if (!root) {
-            return false
+    min(root) {
+        if (!root.left) {
+            return root.value
         } else {
-            if (root.value === value) {
-                return true
-            } else if (value < root.value) {
-                return this.search(this.left, value)
-            } else {
-                return this.search(this.right, value)
+         return   this.min(root.left)
+        }
+    }
+    max(root) {
+        if (!root.right) {
+            return root.value
+        } else {
+         return   this.min(root.right)
+        }
+    }
 
-            }
-        }
-    }
-    PreOrder(root) {
-        if (root) {
-            console.log("preorder",root.value);
-            this.PreOrder(root.left)
-            this.PreOrder(root.right)
-        }
-    }
-    inOrder(root){
-        if (root) {
-            this.inOrder(root.left)
-            console.log(root.value);
-            this.inOrder(root.right)
-        }
-    }
-    postOrder(root){
-        if (root) {
-            this.postOrder(root.left)
-            this.postOrder(root.right)
-            console.log(root.value);
-        }
-    }
 }
 const call = new treeeimplementation()
 console.log(call.isempty());
@@ -78,8 +58,6 @@ call.insert(5)
 call.insert(15)
 call.insert(3)
 call.insert(7)
-console.log(call.search(call.root, 10));
-console.log(call.search(call.root, 40));
-// call.PreOrder(call.root)
-// call.inOrder(call.root)
-call.postOrder(call.root)
+// call.levelOrder()
+console.log(call.min(call.root));
+console.log(call.max(call.root));
