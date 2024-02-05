@@ -3,15 +3,12 @@ class Graph {
         // Using Map to store vertices and their corresponding edges
         this.adList = new Map();
     }
-
     // Adds a new vertex to the graph
     addVertex(vertex) {
         if (!this.adList.has(vertex)) {
-            // Each vertex has a Set to store its adjacent vertices
             this.adList.set(vertex, new Set());
         }
     }
-
     // Adds an undirected edge between two vertices
     addEdge(vertex1, vertex2) {
         if (!this.adList.has(vertex1)) {
@@ -20,19 +17,15 @@ class Graph {
         if (!this.adList.has(vertex2)) {
             this.addVertex(vertex2);
         }
-
-        // Adding edges in both directions
         this.adList.get(vertex1).add(vertex2);
         this.adList.get(vertex2).add(vertex1);
     }
-
     // Displays the vertices and their adjacent vertices
     display() {
         for (let [vertex, edges] of this.adList) {
             console.log(vertex + " -> " + [...edges]);
         }
     }
-
     // Checks if there is an edge between two vertices
     hasEdge(vertex1, vertex2) {
         return (
@@ -42,7 +35,6 @@ class Graph {
             this.adList.get(vertex2).has(vertex1)
         );
     }
-
     // Removes an undirected edge between two vertices
     removeEdge(vertex1, vertex2) {  
         if (this.adList.has(vertex1) && this.adList.has(vertex2)) {
@@ -50,7 +42,6 @@ class Graph {
             this.adList.get(vertex2).delete(vertex1);
         }
     }
-
     // Removes a vertex and its associated edges from the graph
     removeVertex(vertex) {
         if (!this.adList.has(vertex)) {
@@ -61,7 +52,6 @@ class Graph {
         }
         this.adList.delete(vertex);
     }
-
     // Breadth-First Search (BFS) traversal of the graph
     bfs(startVertex) {
         const visited = new Set();
@@ -80,14 +70,11 @@ class Graph {
             }
         }
     }
-
     // Depth-First Search (DFS) traversal of the graph
     dfs(startVertex) {
         const visited = new Set();
         this.dfsRecursive(startVertex, visited);
     }
-
-    // Helper function for recursive DFS traversal
     dfsRecursive(vertex, visited) {
         visited.add(vertex);
         console.log(vertex);
@@ -97,7 +84,6 @@ class Graph {
             }
         }
     }
-
     hasCycle(vertex, visited = new Set(), parent = null) {
 		visited.add(vertex);
 	
@@ -114,7 +100,6 @@ class Graph {
 		return false;
 	  }
 }
-
 // Example Usage:
 const graph = new Graph();
 

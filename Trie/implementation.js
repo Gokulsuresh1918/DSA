@@ -49,7 +49,6 @@ class Trie {
         }
         return result;
     }
-
     autoComplete(word) {
         let node = this.root;
         // Traverse the trie based on the characters in the given word
@@ -65,7 +64,6 @@ class Trie {
         this.Complete(node, word, list);
         return list;
     }
-
     Complete(node, word, list) {
         // Recursively explore the trie, collecting words when reaching the end of a word
         if (node.endofNode) {
@@ -76,7 +74,6 @@ class Trie {
         }
     }
 }
-
 // Example Usage:
 const call = new Trie();
 call.insert('gokul');
@@ -85,11 +82,6 @@ call.insert("app");
 call.insert("apple");
 call.insert("application");
 call.insert("apricot");
-
-// Uncomment the line below to print all words in the trie
 // console.log(call.print());
-
-// Use autoComplete to get a list of words starting with "app"
 let autoCompleteList = call.autoComplete("app");
-
 console.log(autoCompleteList);

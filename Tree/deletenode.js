@@ -5,17 +5,15 @@ class Node {
         this.right = null;
     }
 }
-
 class TreeImplementation {
     constructor() {
         this.root = null;
     }
-
+    //! DELETE A NODE=
     // Check if the tree is empty
     isEmpty() {
         return this.root === null;
     }
-
     // Insert a value into the binary search tree
     insert(value) {
         const newNode = new Node(value);
@@ -27,7 +25,6 @@ class TreeImplementation {
             this.insertNode(this.root, newNode);
         }
     }
-
     // Helper function to insert a node into the binary search tree recursively
     insertNode(root, newNode) {
         if (newNode.value < root.value) {
@@ -46,7 +43,6 @@ class TreeImplementation {
             }
         }
     }
-
     // Find the minimum value in a subtree
     min(root) {
         if (!root.left) {
@@ -55,7 +51,6 @@ class TreeImplementation {
             return this.min(root.left);
         }
     }
-
     // Find the maximum value in a subtree
     max(root) {
         if (!root.right) {
@@ -64,7 +59,6 @@ class TreeImplementation {
             return this.max(root.right);
         }
     }
-
     // Perform level order traversal on the binary search tree
     levelOrder() {
         const queue = [];
@@ -80,18 +74,15 @@ class TreeImplementation {
             }
         }
     }
-
     // Delete a node with a given value from the binary search tree
     delete(value) {
         this.root = this.deleteNode(this.root, value);
     }
-
     // Helper function to recursively delete a node with a given value from the binary search tree
     deleteNode(root, value) {
         if (root === null) {
             return root; // Base case: If the root is null, return null
         }
-
         if (value < root.value) {
             // If the value is less than the root's value, go to the left subtree
             root.left = this.deleteNode(root.left, value);
@@ -100,30 +91,24 @@ class TreeImplementation {
             root.right = this.deleteNode(root.right, value);
         } else {
             // If the value is equal to the root's value, delete the node
-
             if (!root.left && !root.right) {
                 return null; // Case 1: Node with no child
             }
-
             // Case 2: Node with one child or no child
             if (!root.left) {
                 return root.right;
             } else if (!root.right) {
                 return root.left;
             }
-
             // Case 3: Node with two children
             // Find the inorder successor (smallest node in the right subtree)
             root.value = this.min(root.right);
             // Delete the inorder successor
             root.right = this.deleteNode(root.right, root.value);
         }
-
         return root;
     }
 }
-
-// Example usage
 const call = new TreeImplementation();
 call.insert(10);
 call.insert(5);

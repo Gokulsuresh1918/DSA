@@ -1,95 +1,72 @@
-class Graph {
+class MaxHeep {
     constructor() {
-        this.adlist = new Map()
+        this.heap = []
     }
-    addVertex(vertex) {
-        if (!this.adlist.has(vertex)) {
-            this.adlist.set(vertex, new Set())
-        }
+    getparentIndex(index) {
+        return Math.floor((index - 1) / 2)
     }
-    addEdge(vertex1, vertex2) {
-        if (!this.adlist.has(vertex1)) {
-            this.addvertex(vertex1)
-        }
-        if (!this.adlist.has(vertex2)) {
-            this.addvertex(vertex2)
-        }
-        this.adlist.get(vertex1).add(vertex2)
-        this.adlist.get(vertex2).add(vertex1)
+    swap(i, j) {
+        [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]]
     }
-    display() {
-        for (const [vertex, edges] of this.adlist) {
-            console.log(vertex + ' ->' + [...edges]);
-        }
+    leftChild(index) {
+        return index * 2 + 1
     }
-    hasedge(vertex1, vertex2) {
-        return (
-            this.adlist.has(vertex1) &&
-            this.adlist.has(vertex2)) &&
-            this.adlist.get(vertex1).has(vertex2) &&
-            this.adlist.get(vertex2).has(vertex1)
+    rightChild(index) {
+        return index * 2 + 2
     }
-    removeedge(vertex1, vertex2) {
-        if (this.adlist.has(vertex1) && this.adlist.has(vertex2)) {
-            this.adlist.get(vertex1).delete(vertex2)
-            this.adlist.get(vertex2).delete(vertex1)
-        }
-    }
-    removevertex(vertex) {
-        if (!this.adlist.has(vertex)) {
+    heapifpy(index) {
+        if (index < 0) {
             return
         }
-        for (const adj of this.adlist.get(vertex)) {
-            this.removeedge(vertex, adj)
+        const parentIndex = this.getparentIndex(index)
+        if (this.heap[parentIndex] < this.heap[index]) {
+            this.swap(parentIndex, index)
+            this.heapifpy(parentIndex)
         }
-        this.adlist.delete(vertex)
     }
-    bfs(startindex) {
-        const visit = new Set()
-        const queue = [startindex]
-        visit.add(startindex)
-        while (queue.length > 0) {
-            const cur = queue.shift()
-            console.log(cur);
-            for (const neigbour of this.adlist.get(cur)) {
-                if (!visit.has(neigbour)) {
-                    visit.add(neigbour)
-                    queue.push(neigbour)
-                }
+    heapifpydown(index) {
+        const leftChildIndex = this.leftChild(index)
+        const rightChildIndex = this.rightChild(index)
+        let largest = index
+        if (leftChildIndex < this.heap.length &&
+            this.heap[leftChildIndex] > this.heap[largest]) {
+            largest = leftChildIndex
+        }
+        if (rightChildIndex < this.heap.length &&
+            this.heap[rightChildIndex] > this.heap[largest]) {
+            largest = rightChildIndex
+        }
+        if (largest!=index) {
+            this.swap(index,largest)
+            this.heapifpydown(largest)
+        }
+    }
+    insert(value) {
+        this.heap.push(value)
+        this.heapifpy(this.heap.length - 1)
+    }
+    remove() {
+        if (this.heap.length === 0) {
+            return null
+        }
+        const max = this.heap[0]
+        this.heap[0] = this.heap.pop()
+        this.heapifpydown(0)
+        return max
 
-            }
-        }
     }
-    dfs(startindex) {
-        const visit = new Set()
-        this.dfsrecursion(startindex, visit)
+    peek(){
+        return this.heap.length===0?null:this.heap[0]
     }
-    dfsrecursion(vertex, visit) {
-        visit.add(vertex)
-        console.log(vertex);
-        for (let neigbour of this.adlist.get(vertex)) {
-            if (!visit.has(neigbour)) {
-                this.dfsrecursion(neigbour, visit)
-            }
-        }
-    }
-    
 }
-// Example Usage:
-const graph = new Graph();
+const heap = new MaxHeep();
+heap.insert(10);
+heap.insert(5);
+heap.insert(15);
+heap.insert(20);
+heap.insert(8);
 
-graph.addVertex('A');
-graph.addVertex('B');
-graph.addVertex('C');
+console.log(heap.heap); // Output: [20, 10, 15, 5, 8]
 
-graph.addEdge('A', 'B');
-graph.addEdge('B', 'C');
-
-console.log("Graph:");
-graph.display();
-
-console.log("\nBFS Traversal starting from 'A':");
-graph.bfs('A');
-
-console.log("\nDFS Traversal starting from 'A':");
-graph.dfs('A');
+console.log(heap.remove()); // Output: 20
+console.log(heap.heap); // Output: [15, 10, 8, 5]

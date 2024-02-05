@@ -20,6 +20,7 @@ class treeeimplementation {
             this.insertnode(this.root, newnode)
         }
     }
+    //! BFS IMPLEMENTATION
     insertnode(root, newnode) {
         if (newnode.value < root.value) {
             if (root.left == null) {
@@ -49,7 +50,6 @@ class treeeimplementation {
             }
         }
     }
-
 }
 const call = new treeeimplementation()
 console.log(call.isempty());

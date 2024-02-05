@@ -35,6 +35,8 @@ class treeeimplementation {
             }
         }
     }
+    //! MIN & MAX    implementaion (insert, insertnode, isempty)
+
     min(root) {
         if (!root.left) {
             return root.value

@@ -35,7 +35,7 @@ class treeeimplementation {
             }
         }
     }
-
+//! DFS implementaion (insert, insertnode, isempty)
     PreOrder(root) {
         if (root) {
             console.log("preorder",root.value);

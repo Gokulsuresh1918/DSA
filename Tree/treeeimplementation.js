@@ -5,6 +5,7 @@ class Node {
         this.right = null
     }
 }
+//! TREE IMPLEMENTATION
 class treeeimplementation {
     constructor() {
         this.root = null
