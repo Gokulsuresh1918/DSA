@@ -1,72 +1,50 @@
-class MaxHeep {
-    constructor() {
-        this.heap = []
-    }
-    getparentIndex(index) {
-        return Math.floor((index - 1) / 2)
-    }
-    swap(i, j) {
-        [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]]
-    }
-    leftChild(index) {
-        return index * 2 + 1
-    }
-    rightChild(index) {
-        return index * 2 + 2
-    }
-    heapifpy(index) {
-        if (index < 0) {
-            return
-        }
-        const parentIndex = this.getparentIndex(index)
-        if (this.heap[parentIndex] < this.heap[index]) {
-            this.swap(parentIndex, index)
-            this.heapifpy(parentIndex)
-        }
-    }
-    heapifpydown(index) {
-        const leftChildIndex = this.leftChild(index)
-        const rightChildIndex = this.rightChild(index)
-        let largest = index
-        if (leftChildIndex < this.heap.length &&
-            this.heap[leftChildIndex] > this.heap[largest]) {
-            largest = leftChildIndex
-        }
-        if (rightChildIndex < this.heap.length &&
-            this.heap[rightChildIndex] > this.heap[largest]) {
-            largest = rightChildIndex
-        }
-        if (largest!=index) {
-            this.swap(index,largest)
-            this.heapifpydown(largest)
-        }
-    }
-    insert(value) {
-        this.heap.push(value)
-        this.heapifpy(this.heap.length - 1)
-    }
-    remove() {
-        if (this.heap.length === 0) {
-            return null
-        }
-        const max = this.heap[0]
-        this.heap[0] = this.heap.pop()
-        this.heapifpydown(0)
-        return max
-
-    }
-    peek(){
-        return this.heap.length===0?null:this.heap[0]
+class node {
+    constructor(value) {
+        this.value = value
+        this.left = null
+        this.right = null
     }
 }
-const heap = new MaxHeep();
-heap.insert(10);
-heap.insert(5);
-heap.insert(15);
-heap.insert(20);
-heap.insert(8);
-
-console.log(heap.heap); // Output: [20, 10, 15, 5, 8]
-
-console.log(heap.remove()); // Output: 20
-console.log(heap.heap); // Output: [15, 10, 8, 5]
+class Treeimplementation {
+    constructor() {
+        this.root = null
+    }
+    isEmpty(){
+        return this.root===null
+    }
+    insert(value) {
+        const newnode = new node()
+        if(this.isEmpty()){
+            this.root=newnode
+        }else{
+            this.insertone(this.root,newnode)
+        }
+    }
+    insertone(root,newnode){
+        if (newnode.value<root.value) {
+            if (root.left==null) {
+                root.left=newnode
+            }else{
+                this.insertone(root.right,newnode)
+            }
+        }else{
+            if (root.right===null) {
+                root.right=newnode
+            }else{
+                this.insertone(root.right,newnode)
+            }
+        }
+    }
+    check(node){
+        let a = this.root
+        if (this.left<a) {
+            return true
+        }
+        if (this.right>a) {
+            return true
+        }
+        return false
+    }
+}
+const call=new Treeimplementation()
+call.insert(2)

@@ -4,15 +4,13 @@ class TrieNode {
         this.isEndOfWord = false;
     }
 }
-
 class SuffixTrie {
     constructor() {
         this.root = new TrieNode();
     }
-
     insert(word) {
         for (let i = 0; i < word.length; i++) {
-            let currentNode = this.root;
+            let currentNode = this.root
             for (let j = i; j < word.length; j++) {
                 const char = word[j];
                 if (!currentNode.children[char]) {
@@ -23,7 +21,6 @@ class SuffixTrie {
             currentNode.isEndOfWord = true;
         }
     }
-
     search(suffix) {
         let currentNode = this.root;
         for (let i = 0; i < suffix.length; i++) {
@@ -36,10 +33,7 @@ class SuffixTrie {
         return currentNode.isEndOfWord;
     }
 }
-
-// Example usage:
 const suffixTrie = new SuffixTrie();
 suffixTrie.insert("banana");
-
 console.log(suffixTrie.search("ana")); // true
 console.log(suffixTrie.search("xyz")); // false
