@@ -38,7 +38,7 @@ class LinkedListnoded {
             current = current.next;
         }
     }
-    // Method to print all elements in reverse order
+    // Method to print all elements in reverse order using ll
     printInReverseOrder() {
         this.printInReverseOrderHelper(this.head);
     }

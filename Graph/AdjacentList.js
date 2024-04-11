@@ -3,4 +3,4 @@ const adjacentlist={
     'B':['A','C'],
     'C':['B']
 }
-console.log(adjacentlist['B']);
+console.log(adjacentlist['C']);

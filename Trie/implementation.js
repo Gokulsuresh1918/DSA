@@ -6,13 +6,11 @@ class TreeNode {
         this.endofNode = false;
     }
 }
-
 class Trie {
     constructor() {
         // The root of the trie is an empty node
         this.root = new TreeNode();
     }
-
     insert(word) {
         let cur = this.root;
         // Traverse the trie, creating nodes as needed for each character in the word
@@ -25,7 +23,22 @@ class Trie {
         // Mark the last node as the end of a word
         cur.endofNode = true;
     }
-
+    autoComplete(word) {
+        let node = this.root;
+        // Traverse the trie based on the characters in the given word
+        for (const char of word) {
+            if (!node.children[char]) {
+                // If any character is not found, 
+                //return an empty list as there are no words with the given prefix
+                return [];
+            }
+            node = node.children[char];
+        }
+        let list = [];
+        // Collect all words starting from the current node
+        this.Complete(node, word, list);
+        return list;
+    }
     search(word) {
         let node = this.root;
         // Traverse the trie to find the node corresponding to the last character in the word
@@ -49,21 +62,7 @@ class Trie {
         }
         return result;
     }
-    autoComplete(word) {
-        let node = this.root;
-        // Traverse the trie based on the characters in the given word
-        for (const char of word) {
-            if (!node.children[char]) {
-                // If any character is not found, return an empty list as there are no words with the given prefix
-                return [];
-            }
-            node = node.children[char];
-        }
-        let list = [];
-        // Collect all words starting from the current node
-        this.Complete(node, word, list);
-        return list;
-    }
+
     Complete(node, word, list) {
         // Recursively explore the trie, collecting words when reaching the end of a word
         if (node.endofNode) {

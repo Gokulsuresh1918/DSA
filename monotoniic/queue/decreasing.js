@@ -10,6 +10,6 @@ function increasingMonotonicQueue(arr) {
     return q;
 }
 
-const arr = [1, 2, 3, -3, 5, 6];
+const arr = [1, 8, 3, 3, 5, 6];
 const q = increasingMonotonicQueue(arr);
 console.log(q);
