@@ -1,6 +1,5 @@
 class Graph {
     constructor() {
-        // Using Map to store vertices and their corresponding edges
         this.adList = new Map();
     }
     // Adds a new vertex to the graph

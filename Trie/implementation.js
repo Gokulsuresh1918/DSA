@@ -1,26 +1,21 @@
 class TreeNode {
     constructor() {
-        // Each node has a map to store its children nodes
         this.children = {};
-        // Indicates whether the current node marks the end of a word
         this.endofNode = false;
     }
 }
 class Trie {
     constructor() {
-        // The root of the trie is an empty node
         this.root = new TreeNode();
     }
     insert(word) {
         let cur = this.root;
-        // Traverse the trie, creating nodes as needed for each character in the word
         for (const char of word) {
             if (!cur.children[char]) {
                 cur.children[char] = new TreeNode();
             }
             cur = cur.children[char];
         }
-        // Mark the last node as the end of a word
         cur.endofNode = true;
     }
     autoComplete(word) {

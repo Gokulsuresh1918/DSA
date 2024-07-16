@@ -2,26 +2,20 @@ class MinHeap {
     constructor() {
       this.heap = [];
     }
-  //! MIN HEAP
     getParentIndex(index) {
       return Math.floor((index - 1) / 2);
     }
-  
     getLeftChildIndex(index) {
       return index * 2 + 1;
     }
-  
     getRightChildIndex(index) {
       return index * 2 + 2;
     }
-  
     swap(i, j) {
       [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
     }
-  
     heapifyUp(index) {
       if (index <= 0) return;
-  
       const parentIndex = this.getParentIndex(index);
       if (this.heap[parentIndex] > this.heap[index]) { // Changed from < to >
         this.swap(parentIndex, index);

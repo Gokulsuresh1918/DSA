@@ -15,7 +15,6 @@ class hashtable {
         // this.table[index] = value
         let bucket = this.table[index]
         if (!bucket) {
-
             this.table[index] = [[key, value]]
         } else {
             const samekey = bucket.find(item => item[0] === key)
