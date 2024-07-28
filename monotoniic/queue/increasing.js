@@ -1,7 +1,7 @@
 function increasingMonotonicQueue(arr) {
     const q = [];
     for (let i = 0; i < arr.length; i++) {
-        while (q.length > 0 && q[q.length - 1] > arr[i]) {
+        while (q.length > 0 && q[q.length - 1] > arr[i]) {// use >
             q.pop();
         }
         q.push(arr[i]);
